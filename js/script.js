@@ -8,7 +8,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 /* ── Dark / Light Mode ──────────────────────────────────── */
 function initTheme() {
-  const saved = localStorage.getItem('ceyark-theme') || 'dark';
+  const saved = localStorage.getItem('seyerk-theme') || 'dark';
   document.documentElement.setAttribute('data-theme', saved);
   updateThemeIcon(saved);
 
@@ -17,7 +17,7 @@ function initTheme() {
       const curr = document.documentElement.getAttribute('data-theme');
       const next = curr === 'dark' ? 'light' : 'dark';
       document.documentElement.setAttribute('data-theme', next);
-      localStorage.setItem('ceyark-theme', next);
+      localStorage.setItem('seyerk-theme', next);
       updateThemeIcon(next);
     });
   });
