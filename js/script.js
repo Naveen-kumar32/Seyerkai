@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════
-   CeyarkAI — script.js v2.0
+   SeyerkAI — script.js v2.0
    GSAP · ScrollTrigger · Neural Canvas · Lerp Cursor
    Dark/Light Mode · 3D Tilt · Magnetic Buttons
 ═══════════════════════════════════════════════════════════ */
@@ -264,12 +264,12 @@ function initCounters() {
 
 /* ── Chatbot ─────────────────────────────────────────────── */
 const BOT_RESPONSES = {
-  hello: "Hi there! 👋 I'm CeyarkAI's assistant. How can I help you today?",
-  hi: "Hello! 😊 Welcome to CeyarkAI. What can I do for you?",
+  hello: "Hi there! 👋 I'm SeyerkAI's assistant. How can I help you today?",
+  hi: "Hello! 😊 Welcome to SeyerkAI. What can I do for you?",
   services: "We offer AI Development, Cloud Architecture, Web & Mobile Apps, Cybersecurity, Data Analytics, and Digital Strategy. Which interests you?",
   pricing: "Our packages start at $2,500/month for startups. We custom-tailor every solution. Want to schedule a free consultation?",
-  contact: "You can reach us at hello@ceyarkai.com or fill out our contact form. We respond within 24 hours!",
-  ai: "CeyarkAI specializes in LLM integrations, computer vision, predictive analytics, and AI-powered automation. What's your use case?",
+  contact: "You can reach us at hello@seyerkai.com or fill out our contact form. We respond within 24 hours!",
+  ai: "SeyerkAI specializes in LLM integrations, computer vision, predictive analytics, and AI-powered automation. What's your use case?",
   help: "I can help you with: services we offer, pricing, how to get started, or connecting you with our team!",
   default: "Great question! Our team would love to discuss that in detail. Want me to connect you with a specialist? 🚀"
 };
