@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Services — CeyarkAI</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/style.css"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="js/script.js" defer></script>
+  <style>#page-transition{position:fixed;inset:0;z-index:9999;pointer-events:none;}</style>
+</head>
+<body class="cursor-none">
+<div id="page-transition" style="background:#0d0f17;opacity:1;"></div>
+<div id="cursor-dot"></div>
+<div id="cursor-ring"></div>
+<canvas id="neuralCanvas"></canvas>
+
+<!-- NAVBAR -->
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-50 px-6 py-4">
+  <div class="max-w-7xl mx-auto flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-2.5 no-underline">
+      <div class="w-8 h-8 rounded-lg flex items-center justify-center" style="background:linear-gradient(135deg,var(--orange),var(--navy));">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="2" fill="white"/><circle cx="4" cy="6" r="1.5" fill="rgba(255,255,255,0.6)"/><circle cx="20" cy="6" r="1.5" fill="rgba(255,255,255,0.6)"/><circle cx="4" cy="18" r="1.5" fill="rgba(255,255,255,0.6)"/><circle cx="20" cy="18" r="1.5" fill="rgba(255,255,255,0.6)"/><line x1="12" y1="12" x2="4" y2="6" stroke="rgba(255,255,255,0.4)" stroke-width="1"/><line x1="12" y1="12" x2="20" y2="6" stroke="rgba(255,255,255,0.4)" stroke-width="1"/><line x1="12" y1="12" x2="4" y2="18" stroke="rgba(255,255,255,0.4)" stroke-width="1"/><line x1="12" y1="12" x2="20" y2="18" stroke="rgba(255,255,255,0.4)" stroke-width="1"/></svg>
+      </div>
+      <span class="text-lg font-bold tracking-tight" style="color:var(--text)">Ceyark<span class="ai-text">AI</span></span>
+    </a>
+    <div class="hidden md:flex items-center gap-8">
+      <a href="index.html"    class="nav-link">Home</a>
+      <a href="about.html"    class="nav-link">About</a>
+      <a href="services.html" class="nav-link active">Services</a>
+      <a href="contact.html"  class="nav-link">Contact</a>
+    </div>
+    <div class="flex items-center gap-3">
+      <button class="theme-toggle" title="Toggle theme">☀️</button>
+      <a href="contact.html" class="hidden sm:inline-flex btn-primary" style="padding:10px 20px;font-size:13px;">
+        <span>Get Started</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <button id="menu-toggle" class="md:hidden flex flex-col gap-1.5 p-2" aria-label="Menu">
+        <span class="w-5 h-0.5 rounded" style="background:var(--text-2)"></span>
+        <span class="w-5 h-0.5 rounded" style="background:var(--text-2)"></span>
+        <span class="w-3 h-0.5 rounded" style="background:var(--text-2)"></span>
+      </button>
+    </div>
+  </div>
+  <div id="mobile-menu" class="hidden md:hidden mt-4 mx-6 p-4 rounded-2xl glass-card">
+    <div class="flex flex-col gap-3">
+      <a href="index.html"    class="nav-link py-2">Home</a>
+      <a href="about.html"    class="nav-link py-2">About</a>
+      <a href="services.html" class="nav-link py-2">Services</a>
+      <a href="contact.html"  class="nav-link py-2">Contact</a>
+      <a href="contact.html" class="btn-primary text-center mt-2">Get Started</a>
+    </div>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<section class="relative pt-40 pb-24 px-6 overflow-hidden" style="background:linear-gradient(180deg,var(--bg) 0%,var(--bg-2) 100%);">
+  <div class="tech-grid"></div>
+  <div class="dots-bg"></div>
+  <div class="glow-orb glow-orb-orange w-96 h-96" style="top:-100px;left:-80px;"></div>
+  <div class="glow-orb glow-orb-navy w-72 h-72" style="bottom:-60px;right:-60px;animation-delay:2s;"></div>
+  <div class="floating-ring w-48 h-48" style="top:25%;right:5%;opacity:0.4;"></div>
+  <div class="max-w-4xl mx-auto text-center relative z-10" data-animate>
+    <div class="badge-pill inline-flex mb-6">
+      <span class="badge-dot" style="background:var(--navy-lg);"></span>
+      What We Build
+    </div>
+    <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6" style="color:var(--text);">
+      Services that <span class="text-gradient-full">move the needle</span>
+    </h1>
+    <p class="text-lg md:text-xl max-w-2xl mx-auto mb-10" style="color:var(--text-2);">
+      From AI strategy to production deployment — we offer end-to-end engineering services tailored to your ambition.
+    </p>
+    <div class="flex flex-wrap gap-4 justify-center">
+      <a href="contact.html" class="btn-primary-large"><span>Start a Project</span></a>
+      <a href="contact.html" class="btn-ghost-large"><span>Book a Discovery Call</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES GRID -->
+<section class="relative py-24 px-6" style="background:var(--bg-2);">
+  <div class="mesh-bg"></div>
+  <div class="aurora-blob aurora-blob-orange w-96 h-96" style="top:-100px;right:-80px;opacity:0.4;"></div>
+  <div class="aurora-blob aurora-blob-blue w-80 h-80" style="bottom:-80px;left:10%;opacity:0.3;animation-delay:-5s;"></div>
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-14" data-animate>
+      <h2 class="text-4xl md:text-5xl font-bold" style="color:var(--text);">Core <span class="text-gradient-ai">service areas</span></h2>
+    </div>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" data-stagger>
+
+      <div class="service-card glass-card p-8 tilt-card">
+        <div class="card-shine"></div>
+        <div class="service-icon text-4xl mb-5">🧠</div>
+        <h3 class="text-xl font-bold mb-3" style="color:var(--text);">AI & LLM Integration</h3>
+        <p class="text-sm leading-relaxed mb-5" style="color:var(--text-2);">Custom large language model deployments, fine-tuning pipelines, RAG architectures, and AI agents that automate complex workflows.</p>
+        <ul class="space-y-2 mb-6">
+          <li class="flex items-center gap-2 text-sm" style="color:var(--text-2);"><span style="color:var(--blue);">→</span> GPT / Claude / Llama integrations</li>
+          <li class="flex items-center gap-2 text-sm" style="color:var(--text-2);"><span style="color:var(--blue);">→</span> Fine-tuning & RLHF</li>
+          <li class="flex items-center gap-2 text-sm" style="color:var(--text-2);"><span style="color:var(--blue);">→</span> Vector databases & RAG</li>
+          <li class="flex items-center gap-2 text-sm" style="color:var(--text-2);"><span style="color:var(--blue);">→</span> AI agent frameworks</li>
+        </ul>
+        <a href="contact.html" class="btn-primary" style="font-size:13px;padding:10px 20px;">Get a Quote</a>
+      </div>
+
+      <div class="service-card glass-card p-8 tilt-card">
+        <div class="card-shine"></div>
+        <div class="service-icon text-4xl mb-5">☁️</div>
+        <h3 class="text-xl font-bold mb-3" style="color:var(--text);">Cloud Architecture</h3>
+        <p class="text-sm leading-relaxed mb-5" style="color:var(--text-2);">Design and implementation of scalable, resilient cloud infrastructure — serverless, containerized, or microservices-based.</p>
+        <ul class="space-y-2 mb-6">
+          <li class="flex items-center gap-2 text-sm" style="color:var(--text-2);"><span style="color:var(--orange);">→</span> AWS / GCP / Azure</li>
+          <li class="flex items-center gap-2 text-sm" style="color:var(--text-2);"><span style="color:var(--orange);">→</span> Kubernetes & Helm</li>
+          <li class="flex items-center gap-2 text-sm" style="color:var(--text-2);"><span style="color:var(--orange);">→</span> Serverless & edge computing</li>
+          <li class="flex items-center gap-2 text-sm" style="color:var(--text-2);"><span style="color:var(--orange);">→</span> Infrastructure as Code</li>
+        </ul>
+        <a href="contact.html" class="btn-primary" style="font-size:13px;padding:10px 20px;">Get a Quote</a>
+      </div>
+
+      <div class="service-card glass-card p-8 tilt-card">
+        <div class="card-shine"></div>
+        <div class="service-icon text-4xl mb-5">⚡</div>
+        <h3 class="text-xl font-bold mb-3" style="color:var(--text);">Full-Stack Development</h3>
+        <p class="text-sm leading-relaxed mb-5" style="color:var(--text-2);">End-to-end web and mobile application development — from pixel-perfect UI to high-throughput backend APIs.</p>
+        <ul class="space-y-2 mb-6">
+          <li class="flex items-center gap-2 text-sm" style="color:var(--text-2);"><span style="color:var(--navy-lg);">→</span> React / Next.js / Vue</li>
+          <li class="flex items-center gap-2 text-sm" style="color:var(--text-2);"><span style="color:var(--navy-lg);">→</span> Node.js / Go / Rust</li>
+          <li class="flex items-center gap-2 text-sm" style="color:var(--text-2);"><span style="color:var(--navy-lg);">→</span> iOS & Android (React Native)</li>
+          <li class="flex items-center gap-2 text-sm" style="color:var(--text-2);"><span style="color:var(--navy-lg);">→</span> Real-time & WebSocket apps</li>
+        </ul>
+        <a href="contact.html" class="btn-primary" style="font-size:13px;padding:10px 20px;">Get a Quote</a>
+      </div>
+
+      <div class="service-card glass-card p-8 tilt-card">
+        <div class="card-shine"></div>
+        <div class="service-icon text-4xl mb-5">📊</div>
+        <h3 class="text-xl font-bold mb-3" style="color:var(--text);">Data Engineering & Analytics</h3>
+        <p class="text-sm leading-relaxed mb-5" style="color:var(--text-2);">Modern data stacks, warehousing, pipelines, and real-time dashboards — transforming raw data into strategic insight.</p>
+        <ul class="space-y-2 mb-6">
+          <li class="flex items-center gap-2 text-sm" style="color:var(--text-2);"><span style="color:var(--blue);">→</span> ETL / ELT pipelines</li>
+          <li class="flex items-center gap-2 text-sm" style="color:var(--text-2);"><span style="color:var(--blue);">→</span> Snowflake / BigQuery / Redshift</li>
+          <li class="flex items-center gap-2 text-sm" style="color:var(--text-2);"><span style="color:var(--blue);">→</span> dbt, Airflow, Spark</li>
+          <li class="flex items-center gap-2 text-sm" style="color:var(--text-2);"><span style="color:var(--blue);">→</span> BI & visualization</li>
+        </ul>
+        <a href="contact.html" class="btn-primary" style="font-size:13px;padding:10px 20px;">Get a Quote</a>
+      </div>
+
+      <div class="service-card glass-card p-8 tilt-card">
+        <div class="card-shine"></div>
+        <div class="service-icon text-4xl mb-5">🔐</div>
+        <h3 class="text-xl font-bold mb-3" style="color:var(--text);">Security & Compliance</h3>
+        <p class="text-sm leading-relaxed mb-5" style="color:var(--text-2);">Zero-trust architecture design, penetration testing, SOC2 and GDPR compliance engineering, and continuous security posture management.</p>
+        <ul class="space-y-2 mb-6">
+          <li class="flex items-center gap-2 text-sm" style="color:var(--text-2);"><span style="color:var(--orange);">→</span> Penetration testing</li>
+          <li class="flex items-center gap-2 text-sm" style="color:var(--text-2);"><span style="color:var(--orange);">→</span> SOC2 / ISO 27001</li>
+          <li class="flex items-center gap-2 text-sm" style="color:var(--text-2);"><span style="color:var(--orange);">→</span> Zero-trust network design</li>
+          <li class="flex items-center gap-2 text-sm" style="color:var(--text-2);"><span style="color:var(--orange);">→</span> Secrets & identity management</li>
+        </ul>
+        <a href="contact.html" class="btn-primary" style="font-size:13px;padding:10px 20px;">Get a Quote</a>
+      </div>
+
+      <div class="service-card glass-card p-8 tilt-card">
+        <div class="card-shine"></div>
+        <div class="service-icon text-4xl mb-5">🚀</div>
+        <h3 class="text-xl font-bold mb-3" style="color:var(--text);">DevOps & Platform Engineering</h3>
+        <p class="text-sm leading-relaxed mb-5" style="color:var(--text-2);">CI/CD pipelines, GitOps workflows, developer platforms, and SRE practices that let your team ship with speed and confidence.</p>
+        <ul class="space-y-2 mb-6">
+          <li class="flex items-center gap-2 text-sm" style="color:var(--text-2);"><span style="color:var(--navy-lg);">→</span> GitHub Actions / ArgoCD</li>
+          <li class="flex items-center gap-2 text-sm" style="color:var(--text-2);"><span style="color:var(--navy-lg);">→</span> Observability & SLOs</li>
+          <li class="flex items-center gap-2 text-sm" style="color:var(--text-2);"><span style="color:var(--navy-lg);">→</span> Internal developer platforms</li>
+          <li class="flex items-center gap-2 text-sm" style="color:var(--text-2);"><span style="color:var(--navy-lg);">→</span> On-call & incident response</li>
+        </ul>
+        <a href="contact.html" class="btn-primary" style="font-size:13px;padding:10px 20px;">Get a Quote</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="relative py-24 px-6" style="background:linear-gradient(180deg,var(--bg-2),var(--bg));">
+  <div class="max-w-3xl mx-auto">
+    <div class="text-center mb-14" data-animate>
+      <div class="badge-pill inline-flex mb-4">
+        <span class="badge-dot"></span>
+        Common Questions
+      </div>
+      <h2 class="text-4xl font-bold" style="color:var(--text);">Frequently <span class="text-gradient-ai">asked</span></h2>
+    </div>
+    <div class="space-y-3">
+      <div class="glass-card overflow-hidden">
+        <button class="faq-btn w-full text-left flex items-center justify-between p-6" onclick="toggleFaq(this)">
+          <span class="font-semibold text-sm" style="color:var(--text);">How long does a typical project take?</span>
+          <span class="faq-icon text-lg shrink-0" style="color:var(--blue);">+</span>
+        </button>
+        <div class="faq-answer" style="max-height:0;overflow:hidden;transition:max-height 0.4s ease;">
+          <p class="px-6 pb-5 text-sm leading-relaxed" style="color:var(--text-2);">It depends on scope. A focused MVP usually takes 6–10 weeks. Full platform builds typically run 3–6 months. We always start with a Discovery sprint to scope accurately before committing to timelines.</p>
+        </div>
+      </div>
+      <div class="glass-card overflow-hidden">
+        <button class="faq-btn w-full text-left flex items-center justify-between p-6" onclick="toggleFaq(this)">
+          <span class="font-semibold text-sm" style="color:var(--text);">Do you work with early-stage startups?</span>
+          <span class="faq-icon text-lg shrink-0" style="color:var(--blue);">+</span>
+        </button>
+        <div class="faq-answer" style="max-height:0;overflow:hidden;transition:max-height 0.4s ease;">
+          <p class="px-6 pb-5 text-sm leading-relaxed" style="color:var(--text-2);">Yes — about 40% of our clients are pre-Series A. We tailor our engagement model to your stage: from fractional CTO advisory to dedicated build teams. We're happy to work within budget constraints for the right idea.</p>
+        </div>
+      </div>
+      <div class="glass-card overflow-hidden">
+        <button class="faq-btn w-full text-left flex items-center justify-between p-6" onclick="toggleFaq(this)">
+          <span class="font-semibold text-sm" style="color:var(--text);">What does the pricing look like?</span>
+          <span class="faq-icon text-lg shrink-0" style="color:var(--blue);">+</span>
+        </button>
+        <div class="faq-answer" style="max-height:0;overflow:hidden;transition:max-height 0.4s ease;">
+          <p class="px-6 pb-5 text-sm leading-relaxed" style="color:var(--text-2);">We offer fixed-price projects for well-scoped work and time-and-materials for exploratory builds. Retainer packages are available for ongoing support. We're transparent on pricing — no surprises.</p>
+        </div>
+      </div>
+      <div class="glass-card overflow-hidden">
+        <button class="faq-btn w-full text-left flex items-center justify-between p-6" onclick="toggleFaq(this)">
+          <span class="font-semibold text-sm" style="color:var(--text);">Will you sign an NDA?</span>
+          <span class="faq-icon text-lg shrink-0" style="color:var(--blue);">+</span>
+        </button>
+        <div class="faq-answer" style="max-height:0;overflow:hidden;transition:max-height 0.4s ease;">
+          <p class="px-6 pb-5 text-sm leading-relaxed" style="color:var(--text-2);">Absolutely. We sign NDAs as a standard part of onboarding, and we treat every client's IP and business information with the utmost confidentiality.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="relative py-20 px-6 overflow-hidden cta-grid" style="background:var(--bg);">
+  <div class="glow-orb glow-orb-blue w-80 h-80" style="top:0;left:10%;"></div>
+  <div class="glow-orb glow-orb-navy w-72 h-72" style="bottom:0;right:10%;animation-delay:3s;"></div>
+  <div class="max-w-2xl mx-auto text-center relative z-10" data-animate>
+    <h2 class="text-4xl md:text-5xl font-bold mb-5" style="color:var(--text);">Ready to <span class="text-gradient-full">build?</span></h2>
+    <p class="text-base mb-8" style="color:var(--text-2);">Book a free 30-minute discovery call. We'll review your project, give honest feedback, and propose a path forward — no sales pressure.</p>
+    <a href="contact.html" class="btn-primary-large"><span>Book a Free Call</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="relative py-12 px-6" style="border-top:1px solid var(--border);">
+  <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
+    <div class="flex items-center gap-2.5">
+      <div class="w-7 h-7 rounded-lg flex items-center justify-center" style="background:linear-gradient(135deg,var(--orange),var(--navy));"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="2" fill="white"/><line x1="12" y1="12" x2="4" y2="6" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/><line x1="12" y1="12" x2="20" y2="6" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/><line x1="12" y1="12" x2="4" y2="18" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/><line x1="12" y1="12" x2="20" y2="18" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/></svg></div>
+      <span class="font-bold text-sm" style="color:var(--text)">Ceyark<span class="ai-text">AI</span></span>
+    </div>
+    <p class="text-xs" style="color:var(--text-3);">© 2025 CeyarkAI Inc. All rights reserved.</p>
+    <div class="flex gap-5">
+      <a href="index.html"   class="text-xs hover:text-blue-400 transition-colors" style="color:var(--text-3);">Home</a>
+      <a href="about.html"   class="text-xs hover:text-blue-400 transition-colors" style="color:var(--text-3);">About</a>
+      <a href="contact.html" class="text-xs hover:text-blue-400 transition-colors" style="color:var(--text-3);">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<!-- CHATBOT -->
+<div class="fixed bottom-6 right-6 z-40 flex flex-col items-end gap-3">
+  <div id="chatbot-panel" class="chatbot-panel">
+    <div class="chatbot-header">
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-xl flex items-center justify-center text-lg" style="background:linear-gradient(135deg,var(--navy-lg),var(--navy));">🤖</div>
+        <div>
+          <div class="text-sm font-semibold" style="color:var(--text);">CeyarkAI Assistant</div>
+          <div class="flex items-center gap-1.5"><div class="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse"></div><span class="text-xs" style="color:var(--text-3);">Online · Instant reply</span></div>
+        </div>
+      </div>
+      <button id="chatbot-close" class="w-7 h-7 rounded-lg flex items-center justify-center text-sm hover:bg-white/10" style="color:var(--text-3);" aria-label="Close">✕</button>
+    </div>
+    <div id="chatbot-messages" class="chatbot-messages">
+      <div class="chat-msg bot">
+        <div class="chat-bubble bot-bubble">👋 Ask me about any of our services or how to get started!</div>
+        <div class="chat-time">Just now</div>
+      </div>
+      <div class="flex flex-wrap gap-2 mt-1">
+        <button class="quick-reply">AI services</button>
+        <button class="quick-reply">Pricing info</button>
+        <button class="quick-reply">Contact us</button>
+      </div>
+    </div>
+    <div class="chatbot-input-area">
+      <input id="chat-input" type="text" class="chat-input" placeholder="Type a message…" autocomplete="off"/>
+      <button id="chat-send" class="chat-send-btn" aria-label="Send"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z"/></svg></button>
+    </div>
+  </div>
+  <button id="chatbot-toggle" class="chatbot-btn" aria-label="Open chat"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></button>
+</div>
+</body>
+</html>

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact — CeyarkAI</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/style.css"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="js/script.js" defer></script>
+  <style>#page-transition{position:fixed;inset:0;z-index:9999;pointer-events:none;}</style>
+</head>
+<body class="cursor-none">
+<div id="page-transition" style="background:#0d0f17;opacity:1;"></div>
+<div id="cursor-dot"></div>
+<div id="cursor-ring"></div>
+<canvas id="neuralCanvas"></canvas>
+
+<!-- NAVBAR -->
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-50 px-6 py-4">
+  <div class="max-w-7xl mx-auto flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-2.5 no-underline">
+      <div class="w-8 h-8 rounded-lg flex items-center justify-center" style="background:linear-gradient(135deg,var(--orange),var(--navy));">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="2" fill="white"/><circle cx="4" cy="6" r="1.5" fill="rgba(255,255,255,0.6)"/><circle cx="20" cy="6" r="1.5" fill="rgba(255,255,255,0.6)"/><circle cx="4" cy="18" r="1.5" fill="rgba(255,255,255,0.6)"/><circle cx="20" cy="18" r="1.5" fill="rgba(255,255,255,0.6)"/><line x1="12" y1="12" x2="4" y2="6" stroke="rgba(255,255,255,0.4)" stroke-width="1"/><line x1="12" y1="12" x2="20" y2="6" stroke="rgba(255,255,255,0.4)" stroke-width="1"/><line x1="12" y1="12" x2="4" y2="18" stroke="rgba(255,255,255,0.4)" stroke-width="1"/><line x1="12" y1="12" x2="20" y2="18" stroke="rgba(255,255,255,0.4)" stroke-width="1"/></svg>
+      </div>
+      <span class="text-lg font-bold tracking-tight" style="color:var(--text)">Ceyark<span class="ai-text">AI</span></span>
+    </a>
+    <div class="hidden md:flex items-center gap-8">
+      <a href="index.html"    class="nav-link">Home</a>
+      <a href="about.html"    class="nav-link">About</a>
+      <a href="services.html" class="nav-link">Services</a>
+      <a href="contact.html"  class="nav-link active">Contact</a>
+    </div>
+    <div class="flex items-center gap-3">
+      <button class="theme-toggle" title="Toggle theme">☀️</button>
+      <button id="menu-toggle" class="md:hidden flex flex-col gap-1.5 p-2" aria-label="Menu">
+        <span class="w-5 h-0.5 rounded" style="background:var(--text-2)"></span>
+        <span class="w-5 h-0.5 rounded" style="background:var(--text-2)"></span>
+        <span class="w-3 h-0.5 rounded" style="background:var(--text-2)"></span>
+      </button>
+    </div>
+  </div>
+  <div id="mobile-menu" class="hidden md:hidden mt-4 mx-6 p-4 rounded-2xl glass-card">
+    <div class="flex flex-col gap-3">
+      <a href="index.html"    class="nav-link py-2">Home</a>
+      <a href="about.html"    class="nav-link py-2">About</a>
+      <a href="services.html" class="nav-link py-2">Services</a>
+      <a href="contact.html"  class="nav-link py-2">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<section class="relative pt-40 pb-20 px-6 overflow-hidden" style="background:linear-gradient(180deg,var(--bg) 0%,var(--bg-2) 100%);">
+  <div class="tech-grid"></div>
+  <div class="dots-bg"></div>
+  <div class="glow-orb glow-orb-orange w-80 h-80" style="top:-80px;right:-60px;"></div>
+  <div class="glow-orb glow-orb-navy w-72 h-72" style="bottom:-60px;left:-60px;animation-delay:2s;"></div>
+  <div class="max-w-3xl mx-auto text-center relative z-10" data-animate>
+    <div class="badge-pill inline-flex mb-6">
+      <span class="badge-dot"></span>
+      Get in Touch
+    </div>
+    <h1 class="text-5xl md:text-6xl font-bold leading-tight mb-5" style="color:var(--text);">
+      Let's build something <span class="text-gradient-full">great</span>
+    </h1>
+    <p class="text-lg max-w-xl mx-auto" style="color:var(--text-2);">
+      Whether you have a defined project or a rough idea — we'd love to hear it. No sales pitch, just an honest conversation about how we can help.
+    </p>
+  </div>
+</section>
+
+<!-- CONTACT SECTION -->
+<section class="relative py-20 px-6" style="background:var(--bg-2);">
+  <div class="mesh-bg"></div>
+  <div class="aurora-blob aurora-blob-orange w-96 h-96" style="top:-80px;right:5%;opacity:0.3;animation-delay:-2s;"></div>
+  <div class="aurora-blob aurora-blob-blue w-80 h-80" style="bottom:-80px;left:5%;opacity:0.25;animation-delay:-6s;"></div>
+  <div class="max-w-6xl mx-auto">
+    <div class="grid md:grid-cols-2 gap-12 items-start">
+
+      <!-- Contact Info -->
+      <div data-animate>
+        <h2 class="text-3xl font-bold mb-6" style="color:var(--text);">Get in <span class="text-gradient-ai">touch</span></h2>
+        <p class="text-base leading-relaxed mb-10" style="color:var(--text-2);">We typically respond within 2 business hours. For urgent inquiries, mention it in your message — we'll prioritize accordingly.</p>
+
+        <div class="space-y-5 mb-10">
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style="background:rgba(59,130,246,0.12);border:1px solid rgba(59,130,246,0.2);">📧</div>
+            <div>
+              <div class="text-sm font-semibold mb-1" style="color:var(--text);">Email</div>
+              <a href="mailto:hello@ceyark.ai" class="text-sm hover:text-blue-400 transition-colors" style="color:var(--text-2);">hello@ceyark.ai</a>
+            </div>
+          </div>
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style="background:rgba(139,92,246,0.12);border:1px solid rgba(139,92,246,0.2);">📍</div>
+            <div>
+              <div class="text-sm font-semibold mb-1" style="color:var(--text);">Headquarters</div>
+              <p class="text-sm" style="color:var(--text-2);">548 Market St, San Francisco, CA 94104</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style="background:rgba(6,182,212,0.12);border:1px solid rgba(6,182,212,0.2);">⏱️</div>
+            <div>
+              <div class="text-sm font-semibold mb-1" style="color:var(--text);">Response Time</div>
+              <p class="text-sm" style="color:var(--text-2);">Within 2 business hours · Mon–Fri, 9am–6pm PT</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="glass-card p-6">
+          <div class="text-sm font-semibold mb-3" style="color:var(--text);">Follow CeyarkAI</div>
+          <div class="flex gap-2">
+            <a href="#" class="social-icon" aria-label="Twitter"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.748l7.73-8.835L1.254 2.25H8.08l4.259 5.628 5.905-5.628zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+            <a href="#" class="social-icon" aria-label="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
+            <a href="#" class="social-icon" aria-label="GitHub"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact Form -->
+      <div>
+        <form id="contact-form" class="glass-card p-8 space-y-5" novalidate>
+          <div class="grid sm:grid-cols-2 gap-5">
+            <div>
+              <label class="block text-xs font-semibold mb-2" style="color:var(--text-2);">First Name <span style="color:var(--blue)">*</span></label>
+              <input type="text" name="first-name" required placeholder="Rayan" class="contact-input w-full"/>
+              <span class="form-error text-xs mt-1" style="color:#f87171;display:none;"></span>
+            </div>
+            <div>
+              <label class="block text-xs font-semibold mb-2" style="color:var(--text-2);">Last Name <span style="color:var(--blue)">*</span></label>
+              <input type="text" name="last-name" required placeholder="Mehta" class="contact-input w-full"/>
+              <span class="form-error text-xs mt-1" style="color:#f87171;display:none;"></span>
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs font-semibold mb-2" style="color:var(--text-2);">Work Email <span style="color:var(--blue)">*</span></label>
+            <input type="email" name="email" required placeholder="you@company.com" class="contact-input w-full"/>
+            <span class="form-error text-xs mt-1" style="color:#f87171;display:none;"></span>
+          </div>
+          <div>
+            <label class="block text-xs font-semibold mb-2" style="color:var(--text-2);">Company</label>
+            <input type="text" name="company" placeholder="Acme Corp" class="contact-input w-full"/>
+          </div>
+          <div>
+            <label class="block text-xs font-semibold mb-2" style="color:var(--text-2);">What are you looking for? <span style="color:var(--blue)">*</span></label>
+            <select name="service" required class="contact-input w-full">
+              <option value="" disabled selected>Select a service…</option>
+              <option>AI & LLM Integration</option>
+              <option>Cloud Architecture</option>
+              <option>Full-Stack Development</option>
+              <option>Data Engineering & Analytics</option>
+              <option>Security & Compliance</option>
+              <option>DevOps & Platform Engineering</option>
+              <option>Something else</option>
+            </select>
+            <span class="form-error text-xs mt-1" style="color:#f87171;display:none;"></span>
+          </div>
+          <div>
+            <label class="block text-xs font-semibold mb-2" style="color:var(--text-2);">Tell us about your project <span style="color:var(--blue)">*</span></label>
+            <textarea name="message" required rows="5" placeholder="Describe your project, goals, timeline, and any technical constraints…" class="contact-input w-full resize-none"></textarea>
+            <span class="form-error text-xs mt-1" style="color:#f87171;display:none;"></span>
+          </div>
+          <div>
+            <label class="block text-xs font-semibold mb-2" style="color:var(--text-2);">Estimated budget</label>
+            <select name="budget" class="contact-input w-full">
+              <option value="" disabled selected>Select a range…</option>
+              <option>Under $10k</option>
+              <option>$10k – $50k</option>
+              <option>$50k – $150k</option>
+              <option>$150k – $500k</option>
+              <option>$500k+</option>
+            </select>
+          </div>
+          <button type="submit" class="btn-primary-large w-full justify-center">
+            <span>Send Message</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z"/></svg>
+          </button>
+          <p class="text-xs text-center" style="color:var(--text-3);">We'll get back to you within 2 business hours. No spam, ever.</p>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="relative py-12 px-6" style="border-top:1px solid var(--border);">
+  <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
+    <div class="flex items-center gap-2.5">
+      <div class="w-7 h-7 rounded-lg flex items-center justify-center" style="background:linear-gradient(135deg,var(--orange),var(--navy));"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="2" fill="white"/><line x1="12" y1="12" x2="4" y2="6" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/><line x1="12" y1="12" x2="20" y2="6" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/><line x1="12" y1="12" x2="4" y2="18" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/><line x1="12" y1="12" x2="20" y2="18" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/></svg></div>
+      <span class="font-bold text-sm" style="color:var(--text)">Ceyark<span class="ai-text">AI</span></span>
+    </div>
+    <p class="text-xs" style="color:var(--text-3);">© 2025 CeyarkAI Inc. All rights reserved.</p>
+    <div class="flex gap-5">
+      <a href="index.html"    class="text-xs hover:text-blue-400 transition-colors" style="color:var(--text-3);">Home</a>
+      <a href="about.html"    class="text-xs hover:text-blue-400 transition-colors" style="color:var(--text-3);">About</a>
+      <a href="services.html" class="text-xs hover:text-blue-400 transition-colors" style="color:var(--text-3);">Services</a>
+    </div>
+  </div>
+</footer>
+
+<!-- CHATBOT -->
+<div class="fixed bottom-6 right-6 z-40 flex flex-col items-end gap-3">
+  <div id="chatbot-panel" class="chatbot-panel">
+    <div class="chatbot-header">
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-xl flex items-center justify-center text-lg" style="background:linear-gradient(135deg,var(--navy-lg),var(--navy));">🤖</div>
+        <div>
+          <div class="text-sm font-semibold" style="color:var(--text);">CeyarkAI Assistant</div>
+          <div class="flex items-center gap-1.5"><div class="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse"></div><span class="text-xs" style="color:var(--text-3);">Online · Instant reply</span></div>
+        </div>
+      </div>
+      <button id="chatbot-close" class="w-7 h-7 rounded-lg flex items-center justify-center text-sm hover:bg-white/10" style="color:var(--text-3);" aria-label="Close">✕</button>
+    </div>
+    <div id="chatbot-messages" class="chatbot-messages">
+      <div class="chat-msg bot">
+        <div class="chat-bubble bot-bubble">👋 Need help filling out the form? Ask me anything!</div>
+        <div class="chat-time">Just now</div>
+      </div>
+      <div class="flex flex-wrap gap-2 mt-1">
+        <button class="quick-reply">Pricing info</button>
+        <button class="quick-reply">AI capabilities</button>
+        <button class="quick-reply">Timeline questions</button>
+      </div>
+    </div>
+    <div class="chatbot-input-area">
+      <input id="chat-input" type="text" class="chat-input" placeholder="Type a message…" autocomplete="off"/>
+      <button id="chat-send" class="chat-send-btn" aria-label="Send"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z"/></svg></button>
+    </div>
+  </div>
+  <button id="chatbot-toggle" class="chatbot-btn" aria-label="Open chat"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></button>
+</div>
+</body>
+</html>
